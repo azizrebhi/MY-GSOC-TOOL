@@ -589,19 +589,27 @@ function renderMilestones(milestones) {
     const milestoneList = document.getElementById('milestones');
     if (milestones && milestones.length > 0) {
         milestoneList.innerHTML = milestones.map(milestone => {
-            const isCompleted = milestone.completed === true;
-            const cardClasses = isCompleted
-                ? 'flex gap-4 p-4 border border-green-200 dark:border-green-900/40 rounded-lg bg-green-50 dark:bg-green-900/10 items-start'
-                : 'flex gap-4 p-4 border border-gray-100 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-700/50 items-start opacity-70';
-            const iconWrapperClasses = isCompleted
-                ? 'w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-500 flex-shrink-0'
-                : 'w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 flex-shrink-0';
-            const statusIcon = isCompleted
-                ? '<i class="fas fa-check-circle text-green-500 dark:text-green-400 flex-shrink-0 text-lg"></i>'
-                : '<i class="far fa-circle text-gray-300 dark:text-gray-600 flex-shrink-0 text-lg"></i>';
-            const titleClasses = isCompleted
-                ? 'font-semibold text-gray-800 dark:text-gray-200'
-                : 'font-semibold text-gray-500 dark:text-gray-400';
+            const status = milestone.completed;
+            let cardClasses, iconWrapperClasses, statusIcon, titleClasses;
+
+            if (status === "done") {
+                cardClasses = 'flex gap-4 p-4 border border-green-200 dark:border-green-900/40 rounded-lg bg-green-50 dark:bg-green-900/10 items-start';
+                iconWrapperClasses = 'w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-500 flex-shrink-0';
+                statusIcon = '<i class="fas fa-check-circle text-emerald-500 dark:text-emerald-400 flex-shrink-0 text-lg"></i>';
+                titleClasses = 'font-semibold text-green-800 dark:text-green-200';
+            } else if (status === "inProgress") {
+                cardClasses = 'flex gap-4 p-4 border border-amber-200 dark:border-amber-900/40 rounded-lg bg-amber-50 dark:bg-amber-900/10 items-start';
+                iconWrapperClasses = 'w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-500 flex-shrink-0';
+                statusIcon = '<i class="fas fa-circle-notch text-amber-500 dark:text-amber-400 flex-shrink-0 text-lg"></i>';
+                titleClasses = 'font-semibold text-gray-800 dark:text-gray-200';
+            } else {
+                // pending or default
+                cardClasses = 'flex gap-4 p-4 border border-sky-100 dark:border-sky-800/50 rounded-lg bg-sky-50/100 dark:bg-sky-800/10 items-start opacity-70';
+                iconWrapperClasses = 'w-10 h-10 rounded-full bg-sky-100 dark:bg-sky-800 flex items-center justify-center text-sky-400 dark:text-sky-400 flex-shrink-0';
+                statusIcon = '<i class="far fa-circle-dot text-sky-300 dark:text-sky-600 flex-shrink-0 text-lg"></i>';
+                titleClasses = 'font-semibold text-sky-400 dark:text-sky-200';
+            }
+
             return `
                 <div class="${cardClasses}">
                     <div class="${iconWrapperClasses}">
