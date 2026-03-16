@@ -1,12 +1,12 @@
 {
   "student": {
-    "name": "Your Name",
+    "name": "Mohamed Aziz Rebhi",
     "bio": "Google Summer of Code Contributor",
     "avatar": "https://github.com/yourusername.png",
-    "github": "https://github.com/yourusername",
-    "email": "your.email@example.com",
-    "blog": "https://yourblog.dev",
-    "linkedin": "https://linkedin.com/in/yourprofile"
+    "github": "https://github.com/azizrebhi",
+    "email": "mohamedaziz.rebhi@ensi-uma.tn",
+    "blog": "https://medium.com/p/3b7dd8a7ed7e?postPublishedType=initial",
+    "linkedin": "https://www.linkedin.com/in/aziz-rebhi-971b32192/"
   },
   "project": {
     "title": "Your GSoC Project Title",
